@@ -33,10 +33,10 @@ def oe(arr):
                 odd.append(i)
             else:
                 even.append(i)
-        #odd1 = {"odd" : odd}
+        odd1 = {"odd" : odd}
         even1 = {"even": even}
-        pred = [p1,id,odd,even]
-        #return pred
+        pred = [p1,id,odd1,even1]
+        return pred
 
         result = {
             "is_success": status,
@@ -44,7 +44,7 @@ def oe(arr):
             "odd": "{}".format(odd),
             "even": "{}".format(even)
         }
-        return result
+        #return result
         #return jsonify(results=result)
 
 
@@ -62,9 +62,7 @@ def predict():
     arr= request.form.get('movie').split(",")
     pred =oe(arr=arr)
     return render_template('index.html', prediction_text ="Recommend{}".format(pred), data=pred, len=len(pred))
-    #return render_template('index.html', jsonify(results=list))
-   # return jsonify(results=list)
     #return render_template('index.html', title="page", jsonfile=json.dumps(pred))
-
+    #return jsonify(pred)
 if __name__ == '__main__':
     app.run(debug=True , port='8000')
